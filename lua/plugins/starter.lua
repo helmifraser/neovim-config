@@ -1,0 +1,132 @@
+-- --  -- dashboard
+return {}
+
+-- return {
+--   "goolord/alpha-nvim",
+--   event = "VimEnter",
+--   opts = function()
+--     local dashboard = require("alpha.themes.dashboard")
+--     local logo = [[
+--       ██╗      █████╗ ███████╗██╗   ██╗██╗   ██╗██╗███╗   ███╗          Z
+--       ██║     ██╔══██╗╚══███╔╝╚██╗ ██╔╝██║   ██║██║████╗ ████║      Z
+--       ██║     ███████║  ███╔╝  ╚████╔╝ ██║   ██║██║██╔████╔██║   z
+--       ██║     ██╔══██║ ███╔╝    ╚██╔╝  ╚██╗ ██╔╝██║██║╚██╔╝██║ z
+--       ███████╗██║  ██║███████╗   ██║    ╚████╔╝ ██║██║ ╚═╝ ██║
+--       ╚══════╝╚═╝  ╚═╝╚══════╝   ╚═╝     ╚═══╝  ╚═╝╚═╝     ╚═╝
+--       ]]
+--
+--     dashboard.section.header.val = vim.split(logo, "\n")
+--     dashboard.section.buttons.val = {
+--       dashboard.button("f", " " .. " Find file", ":Telescope find_files <CR>"),
+--       dashboard.button("n", " " .. " New file", ":ene <BAR> startinsert <CR>"),
+--       dashboard.button("r", " " .. " Recent files", ":Telescope oldfiles <CR>"),
+--       dashboard.button("g", " " .. " Find text", ":Telescope live_grep <CR>"),
+--       dashboard.button("c", " " .. " Config", ":e $MYVIMRC <CR>"),
+--       -- dashboard.button("s", " " .. " Restore Session", ":Autosession search <CR>"),
+--       dashboard.button("l", "󰒲 " .. " Lazy", ":Lazy<CR>"),
+--       dashboard.button("q", " " .. " Quit", ":qa<CR>"),
+--     }
+--     for _, button in ipairs(dashboard.section.buttons.val) do
+--       button.opts.hl = "AlphaButtons"
+--       button.opts.hl_shortcut = "AlphaShortcut"
+--     end
+--     dashboard.section.header.opts.hl = "AlphaHeader"
+--     dashboard.section.buttons.opts.hl = "AlphaButtons"
+--     dashboard.section.footer.opts.hl = "AlphaFooter"
+--     dashboard.opts.layout[1].val = 8
+--     return dashboard
+--   end,
+--   config = function(_, dashboard)
+--     -- close Lazy and re-open when the dashboard is ready
+--     if vim.o.filetype == "lazy" then
+--       vim.cmd.close()
+--       vim.api.nvim_create_autocmd("User", {
+--         pattern = "AlphaReady",
+--         callback = function()
+--           require("lazy").show()
+--         end,
+--       })
+--     end
+--
+--     require("alpha").setup(dashboard.opts)
+--
+--     vim.api.nvim_create_autocmd("User", {
+--       pattern = "LazyVimStarted",
+--       callback = function()
+--         local stats = require("lazy").stats()
+--         local ms = (math.floor(stats.startuptime * 100 + 0.5) / 100)
+--         dashboard.section.footer.val = "⚡ Neovim loaded " .. stats.count .. " plugins in " .. ms .. "ms"
+--         pcall(vim.cmd.AlphaRedraw)
+--       end,
+--     })
+--   end,
+-- }
+--
+-- -- mini.starter
+-- -- return {
+-- --   "echasnovski/mini.starter",
+-- --   version = false, -- wait till new 0.7.0 release to put it back on semver
+-- --   event = "VimEnter",
+-- --   opts = function()
+-- --     local logo = table.concat({
+-- --       "██╗      █████╗ ███████╗██╗   ██╗██╗   ██╗██╗███╗   ███╗          Z",
+-- --       "██║     ██╔══██╗╚══███╔╝╚██╗ ██╔╝██║   ██║██║████╗ ████║      Z",
+-- --       "██║     ███████║  ███╔╝  ╚████╔╝ ██║   ██║██║██╔████╔██║   z",
+-- --       "██║     ██╔══██║ ███╔╝    ╚██╔╝  ╚██╗ ██╔╝██║██║╚██╔╝██║ z",
+-- --       "███████╗██║  ██║███████╗   ██║    ╚████╔╝ ██║██║ ╚═╝ ██║",
+-- --       "╚══════╝╚═╝  ╚═╝╚══════╝   ╚═╝     ╚═══╝  ╚═╝╚═╝     ╚═╝",
+-- --     }, "\n")
+-- --     local pad = string.rep(" ", 22)
+-- --     local new_section = function(name, action, section)
+-- --       return { name = name, action = action, section = pad .. section }
+-- --     end
+-- --
+-- --     local starter = require("mini.starter")
+-- --     --stylua: ignore
+-- --     local config = {
+-- --       evaluate_single = true,
+-- --       header = logo,
+-- --       items = {
+-- --         new_section("new file",     "ene | startinsert",    "Files"),
+-- --         new_section("find file",    "Telescope find_files", "Files"),
+-- --         new_section("recent files", "Telescope oldfiles",   "Files"),
+-- --         new_section("grep text",    "Telescope live_grep",  "Files"),
+-- --         new_section("init.lua",     "e $MYVIMRC",           "Config"),
+-- --         new_section("lazy",         "Lazy",                 "Config"),
+-- --         new_section("sessions", "SearchSession", "System"),
+-- --         new_section("quit",         "qa",                   "System"),
+-- --       },
+-- --       content_hooks = {
+-- --         starter.gen_hook.adding_bullet(pad .. "░ ", false),
+-- --         starter.gen_hook.aligning("center", "center"),
+-- --       },
+-- --     }
+-- --     return config
+-- --   end,
+-- --   config = function(_, config)
+-- --     -- close Lazy and re-open when starter is ready
+-- --     if vim.o.filetype == "lazy" then
+-- --       vim.cmd.close()
+-- --       vim.api.nvim_create_autocmd("User", {
+-- --         pattern = "MiniStarterOpened",
+-- --         callback = function()
+-- --           require("lazy").show()
+-- --         end,
+-- --       })
+-- --     end
+-- --
+-- --     local starter = require("mini.starter")
+-- --     starter.setup(config)
+-- --
+-- --     vim.api.nvim_create_autocmd("User", {
+-- --       pattern = "LazyVimStarted",
+-- --       callback = function()
+-- --         local stats = require("lazy").stats()
+-- --         local ms = (math.floor(stats.startuptime * 100 + 0.5) / 100)
+-- --         local pad_footer = string.rep(" ", 8)
+-- --         starter.config.footer = pad_footer .. "⚡ Neovim loaded " .. stats.count .. " plugins in " .. ms .. "ms"
+-- --         pcall(starter.refresh)
+-- --       end,
+-- --     })
+-- --   end,
+-- -- }

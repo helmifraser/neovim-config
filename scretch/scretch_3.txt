@@ -1,0 +1,7 @@
+reset indices:
+
+linear_features -> get_intersections, not returned/inplace
+polygons -> contains indices of RESET linear_features
+
+linear_features -> compute_intersection_ratios, as above, not returned/inplace
+

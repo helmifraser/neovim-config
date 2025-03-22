@@ -1,0 +1,9 @@
+Hitting the end goal exactly with an RRT is proving troublesome. 
+
+The termination condition is based on a radius to the goal, which means that the algorithm will terminate when a node is added to the tree that is within a certain distance (i.e. radius) of the goal configuration.
+
+More often than not, this will produce final segments which do not quite reach the goal configuration.
+
+This is not ideal. Let's try to fix this.
+
+One thing we could try is to instantiate a bunch of segments connected to the goal. We would then need to modify the feasibility check 
